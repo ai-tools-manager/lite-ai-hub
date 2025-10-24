@@ -1,3 +1,4 @@
+
 // Package dto contains DTO objects for entities.
 package dto
 
@@ -11,7 +12,6 @@ type Message struct {
 type GetMessagesResponse struct {
 	Messages []Message `json:"messages"`
 }
-
 // MessageListResponse represents the response containing a list of messages.
 type MessageListResponse struct {
 	Messages []Message `json:"messages"`
