@@ -1,13 +1,14 @@
+// Package dto contains DTO objects for entities.
 package dto
 
-type CreateChatResponse struct {
-	ChatID uint `json:"chat_id"`
+import "github.com/google/uuid"
+
+// ChatResponse represents the response when creating a chat.
+type ChatResponse struct {
+	ChatID uuid.UUID `json:"chat_id"`
 }
 
-type ChatListItem struct {
-	ChatID uint `json:"chat_id"`
-}
-
-type GetChatsResponse struct {
-	Chats []ChatListItem `json:"chats"`
+// ChatListResponse represents the response containing a list of chats.
+type ChatListResponse struct {
+	Chats []ChatResponse `json:"chats"`
 }

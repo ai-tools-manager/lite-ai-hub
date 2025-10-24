@@ -1,11 +1,15 @@
 # ai-tools-manager
 
 ## API docs
+
 ### /chat
+
 #### POST /chat
+
 Создает новый chat
 
-Response: 
+Response:
+
 ```json
 {
   "chat_id": 0
@@ -13,9 +17,11 @@ Response:
 ```
 
 #### GET /chat/list
+
 Получает список всех чатов
 
-Response: 
+Response:
+
 ```json
 {
   "chats": [
@@ -26,12 +32,14 @@ Response:
 }
 ```
 
-
 ### /message
+
 #### GET /message/{chat_id} (TODO: добавить пагинацию в будущем)
-Получает список всех сообщений чата 
+
+Получает список всех сообщений чата
 
 Response:
+
 ```json
 {
   "messages": [
@@ -44,14 +52,17 @@ Response:
 ```
 
 #### POST /message/{chat_id)
+
 Отправлет сообщениие в чат
 
-
 ### /lib
+
 #### GET /lib/list
+
 Получение всех установленных библиотек
 
-Response: 
+Response:
+
 ```json
 [
   {
@@ -61,10 +72,13 @@ Response:
   }
 ]
 ```
+
 #### POST /lib
+
 Cкачивает библиотеку (сохрвняет в бд) и создает knative контейнер с service
 
 Request:
+
 ```json
 {
   "git_url": "http://example-link.com"
@@ -72,5 +86,5 @@ Request:
 ```
 
 #### DELETE /lib/{lib_url}
-Удвляет библиотеку, контейнер, service
 
+Удвляет библиотеку, контейнер, service
