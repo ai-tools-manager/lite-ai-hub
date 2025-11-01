@@ -1,1 +1,1 @@
-package ai_hub
+package main

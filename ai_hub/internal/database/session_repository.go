@@ -19,7 +19,7 @@ func (r *SessionRepository) Create(session *models.Session) error {
 	if err != nil {
 		return err
 	}
-	defer func() {
+	//defer func() {
 		if err := stmt.Close(); err != nil {
 			// Log the error or handle it
 		}

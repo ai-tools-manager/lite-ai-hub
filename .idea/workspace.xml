@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4faf4886-7977-4d8d-8283-ccf38710eb48" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ai_hub/internal/kubernetes/configs/minikube_config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ai_hub/internal/dto/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/ai_hub/internal/dto/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai_hub/cmd/ai_hub/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/ai_hub/cmd/ai_hub/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ai_hub/internal/database/session_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/ai_hub/internal/database/session_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ai_hub/internal/kubernetes/kubernetes.go" beforeDir="false" afterPath="$PROJECT_DIR$/ai_hub/internal/kubernetes/kubernetes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="35" />
+    <option name="cachedIndexableFilesCount" value="39" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -44,6 +48,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build lite_ai_hub/ai_hub/cmd/ai_hub.executor": "Run",
+    "Go Test.kubernetes_test.go.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.GoLinterPluginOnboarding": "true",
     "RunOnceActivity.GoLinterPluginStorageMigration": "true",
@@ -60,6 +66,48 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ai_hub/cmd/ai_hub" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build lite_ai_hub/ai_hub/cmd/ai_hub">
+    <configuration name="go build lite_ai_hub/ai_hub/cmd/ai_hub" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="lite_ai_hub" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="lite_ai_hub/ai_hub/cmd/ai_hub" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/ai_hub/cmd/ai_hub/m.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build m.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="lite_ai_hub" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <package value="lite_ai_hub" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/ai_hub/internal/kubernetes/m.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="kubernetes_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="lite_ai_hub" />
+      <working_directory value="$PROJECT_DIR$/ai_hub/internal/kubernetes" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/ai_hub/internal/kubernetes/kubernetes_test.go" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build lite_ai_hub/ai_hub/cmd/ai_hub" />
+        <item itemvalue="Go Build.go build m.go" />
+        <item itemvalue="Go Test.kubernetes_test.go" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,5 +128,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
