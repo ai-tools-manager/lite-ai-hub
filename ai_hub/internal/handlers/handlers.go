@@ -2,20 +2,34 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"io"
+	"lite_ai_hub/ai_hub/internal/database"
 	"lite_ai_hub/ai_hub/internal/dto"
+	"lite_ai_hub/ai_hub/internal/models"
+	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/google/uuid"
 )
 
 // Handlers contains all HTTP request handlers.
-type Handlers struct{}
+type Handlers struct {
+	ChatRepo    database.ChatRepositoryInterface
+	LibRepo     database.LibRepositoryInterface
+	MessageRepo database.MessageRepositoryInterface
+}
 
 // NewHandlers creates a new Handlers instance.
-func NewHandlers() *Handlers {
-	return &Handlers{}
+func NewHandlers(chatRepo database.ChatRepositoryInterface, libRepo database.LibRepositoryInterface, messageRepo database.MessageRepositoryInterface) *Handlers {
+	return &Handlers{
+		ChatRepo:    chatRepo,
+		LibRepo:     libRepo,
+		MessageRepo: messageRepo,
+	}
 }
 
 // CreateChat handles POST /chat requests to create a new chat.
@@ -65,13 +79,50 @@ func (h *Handlers) InstallLibrary(c fiber.Ctx) error {
 		return c.Status(400).JSON(fiber.Map{"error": "invalid request"})
 	}
 
-	return c.SendStatus(200)
+	rawURL := strings.Replace(req.GitURL.String(), "github.com", "raw.githubusercontent.com", 1)
+	rawURL += "/config.json"
+
+	resp, err := http.Get(rawURL)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to fetch config"})
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": "config not found"})
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to read config"})
+	}
+
+	var libConfig struct {
+		Name        string `json:"name"`
+		Description string `json:"description"`
+		Manifest    string `json:"manifest"`
+	}
+
+	if err := json.Unmarshal(body, &libConfig); err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to parse config"})
+	}
+
+	var lib models.Lib
+	lib.Name = libConfig.Name
+	lib.Description = libConfig.Description
+	lib.Manifest = libConfig.Manifest
+
+	if err := h.LibRepo.CreateLib(&lib); err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"error": "failed to save library"})
+	}
+
+	return c.Status(http.StatusCreated).JSON(lib)
 }
 
 // DeleteLibrary handles DELETE /lib/{lib_url} requests to remove a library.
 func (h *Handlers) DeleteLibrary(c fiber.Ctx) error {
 	libURL, err := url.Parse(c.Params("lib_url"))
-	if err == nil {
+	if err != nil {
 		return c.Status(400).JSON(fiber.Map{"error": "incorrect lib_url"})
 	}
 	fmt.Println(libURL)
