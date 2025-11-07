@@ -30,10 +30,10 @@ func createTables() {
 		updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);`
 
-	sessionsTable := `
-	CREATE TABLE IF NOT EXISTS sessions (
+	chatsTable := `
+	CREATE TABLE IF NOT EXISTS chats (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		session_id INTEGER NOT NULL,
+		chat_id INTEGER NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);`
@@ -41,26 +41,25 @@ func createTables() {
 	messagesTable := `
 	CREATE TABLE IF NOT EXISTS messages (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		session_id INTEGER NOT NULL,
+		chat_id INTEGER NOT NULL,
 		role TEXT NOT NULL,
 		content TEXT,
-		tool_call TEXT,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-		FOREIGN KEY(session_id) REFERENCES sessions(id)
+		FOREIGN KEY(chat_id) REFERENCES chats(id)
 	);`
 
 	_, err := DB.Exec(libsTable)
 	if err != nil {
-		log.Fatalf("could not create libs table: %v", err)
+		log.Fatal("failed to create libs table", err)
 	}
 
-	_, err = DB.Exec(sessionsTable)
+	_, err = DB.Exec(chatsTable)
 	if err != nil {
-		log.Fatalf("could not create sessions table: %v", err)
+		log.Fatal("failed to create chats table", err)
 	}
 
 	_, err = DB.Exec(messagesTable)
 	if err != nil {
-		log.Fatalf("could not create messages table: %v", err)
+		log.Fatal("failed to create messages table", err)
 	}
 }
